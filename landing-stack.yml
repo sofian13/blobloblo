@@ -4,7 +4,7 @@ services:
   landing:
     image: focus_landing:latest
     deploy:
-      replicas: 4
+      replicas: 12
       update_config:
         parallelism: 1
         delay: 10s
@@ -15,8 +15,8 @@ services:
         max_attempts: 3
       resources:
         limits:
-          memory: 128M
-          cpus: '0.2'
+          memory: 32M
+          cpus: '0.5'
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.landing.rule=Host(`focus-business.com`)"
