@@ -38,7 +38,7 @@ jobs:
 
             # Build et déployer avec Docker Swarm
             docker build -t focus_landing:latest .
-            docker stack deploy -c app-stack.yml mylanding
+            docker stack deploy -c landing-stack.yml mylanding
 
             # Vérifier le déploiement
             docker service ls
