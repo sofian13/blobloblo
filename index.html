@@ -1602,7 +1602,6 @@ wp.i18n.setLocaleData( { 'text directionltr': [ 'ltr' ] } );
     document.querySelectorAll('a[href*="espace.focus-business.com/checkout"]').forEach(function(link) {
       var url = new URL(link.href);
       url.searchParams.set('ref', ref);
-      url.searchParams.set('from_lp', '1');
       link.href = url.toString();
     });
   }
