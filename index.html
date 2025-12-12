@@ -1599,7 +1599,7 @@ wp.i18n.setLocaleData( { 'text directionltr': [ 'ltr' ] } );
   var urlParams = new URLSearchParams(window.location.search);
   var ref = urlParams.get('ref');
   if (ref) {
-    document.querySelectorAll('a[href*="espace.focus-business.com/checkout"]').forEach(function(link) {
+    document.querySelectorAll('a[href*="/checkout"]').forEach(function(link) {
       var url = new URL(link.href);
       url.searchParams.set('ref', ref);
       link.href = url.toString();
