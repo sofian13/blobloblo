@@ -1594,6 +1594,20 @@ wp.i18n.setLocaleData( { 'text directionltr': [ 'ltr' ] } );
 <script>var ElementorProFrontendConfig = {"ajaxurl":"./wp-admin\/admin-ajax.php","nonce":"e5c6255906","urls":{"assets":"./wp-content\/plugins\/elementor-pro\/assets\/","rest":"./wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":false},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"woocommerce":{"menu_cart":{"cart_page_url":"https:\/\/focus-business.com","checkout_page_url":"./?post_type=wpcf7_contact_form&p=11","fragments_nonce":"dc10abc1e9"}},"facebook_sdk":{"lang":"fr_FR","app_id":""},"lottie":{"defaultAnimationUrl":"./wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};</script>
 <script type="text/javascript" src="./js/elementor-pro-assets-js-frontend.min.js" id="elementor-pro-frontend-js"></script>
 <script type="text/javascript" src="./js/elementor-pro-assets-js-elements-handlers.min.js" id="pro-elements-handlers-js"></script>
+<script>
+(function() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var ref = urlParams.get('ref');
+  if (ref) {
+    document.querySelectorAll('a[href*="espace.focus-business.com/checkout"]').forEach(function(link) {
+      var url = new URL(link.href);
+      url.searchParams.set('ref', ref);
+      url.searchParams.set('from_lp', '1');
+      link.href = url.toString();
+    });
+  }
+})();
+</script>
 	</body>
 
 
