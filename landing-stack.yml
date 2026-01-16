@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     image: focus-landing:latest
     deploy:
-      replicas: 24
+      replicas: 1
       update_config:
         parallelism: 1
         delay: 10s
