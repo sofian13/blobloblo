@@ -1607,20 +1607,48 @@ wp.i18n.setLocaleData( { 'text directionltr': [ 'ltr' ] } );
   
 })();
 </script>
+<!-- ===== Custom chat button (ONLY index.html) ===== -->
+<!-- ===== Custom chat button (ONLY index.html) ===== -->
+<button id="chat-btn" type="button" aria-label="Ouvrir le chat"
+  style="
+    position:fixed; right:18px; bottom:18px; width:64px; height:64px;
+    border-radius:999px; border:none; cursor:pointer;
+    background:#0f0f10; box-shadow:0 10px 30px rgba(0,0,0,.35);
+    display:flex; align-items:center; justify-content:center;
+    z-index:99999;
+  ">
+  <img src="./images/2025-04-fofo.png" alt=""
+       style="width:34px;height:34px;object-fit:contain;display:block;" />
+</button>
 
-<!--Start of Tawk.to Script-->
 <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/696d86a7c32c5b19777bf5ed/1jf9tc07g';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
+  // API Tawk (déclarée UNE SEULE FOIS)
+  var Tawk_API = Tawk_API || {};
+  var Tawk_LoadStart = new Date();
+
+  // Quand Tawk est prêt : on cache leur launcher
+  Tawk_API.onLoad = function () {
+    Tawk_API.hideWidget();
+  };
+
+  // Ton bouton ouvre le chat
+  document.getElementById('chat-btn').addEventListener('click', function () {
+    Tawk_API.showWidget();
+    Tawk_API.maximize();
+  });
+
+  // Embed Tawk (UNE SEULE FOIS)
+  (function(){
+    var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/696d86a7c32c5b19777bf5ed/1jf9tc07g';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
 </script>
-<!--End of Tawk.to Script-->
+<!-- ===== /Custom chat button ===== -->
+
 	</body>
 
 
