@@ -1607,32 +1607,63 @@ wp.i18n.setLocaleData( { 'text directionltr': [ 'ltr' ] } );
   
 })();
 </script>
+<!-- ===== Bouton bulle CUSTOM (ton avatar) ===== -->
+<button id="cw-launcher" type="button" aria-label="Ouvrir le chat"
+  style="
+    position:fixed; right:18px; bottom:18px;
+    width:64px; height:64px; border-radius:999px;
+    border:none; cursor:pointer;
+    background:#0f0f10;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    display:flex; align-items:center; justify-content:center;
+    z-index:999999;
+  ">
+  <img src="./images/2025-04-fofo.png" alt="Chat"
+       style="width:38px;height:38px;border-radius:999px;object-fit:cover;display:block;">
+</button>
+
+<style>
+  /* Cache la bulle / launcher par défaut de Chatwoot */
+  .woot-widget-bubble,
+  .woot-widget-bubble-holder {
+    display: none !important;
+  }
+
+  /* Assure que le widget reste au-dessus */
+  #chatwoot-widget, .woot-widget-holder {
+    z-index: 999998 !important;
+  }
+</style>
+
 <script>
   (function(d,t) {
     var BASE_URL="https://app.chatwoot.com";
     var g=d.createElement(t), s=d.getElementsByTagName(t)[0];
     g.src=BASE_URL+"/packs/js/sdk.js";
     g.async = true;
+    s.parentNode.insertBefore(g,s);
 
     g.onload=function(){
-      console.log("[CHATWOOT] sdk loaded ✅", window.chatwootSDK);
       window.chatwootSDK.run({
         websiteToken: "zdhhcQUtuwvobgV3Ca8WYiWz",
         baseUrl: BASE_URL
       });
 
-      // si l’API $chatwoot existe, on tente d’ouvrir
-      setTimeout(() => {
-        console.log("[CHATWOOT] $chatwoot:", window.$chatwoot);
-        try { window.$chatwoot && window.$chatwoot.toggle("open"); } catch (e) {}
-      }, 1500);
-    };
+      // Force le widget à être fermé au chargement
+      setTimeout(function () {
+        if (window.$chatwoot && typeof window.$chatwoot.toggle === "function") {
+          window.$chatwoot.toggle("close");
+        }
+      }, 700);
 
-    g.onerror=function(e){
-      console.error("[CHATWOOT] sdk failed ❌", e);
+      // Ton bouton ouvre/ferme le chat
+      var btn = document.getElementById("cw-launcher");
+      btn.addEventListener("click", function () {
+        if (window.$chatwoot && typeof window.$chatwoot.toggle === "function") {
+          window.$chatwoot.toggle("open");
+        }
+      });
     };
-
-    s.parentNode.insertBefore(g,s);
   })(document,"script");
 </script>
 
