@@ -1607,55 +1607,6 @@ wp.i18n.setLocaleData( { 'text directionltr': [ 'ltr' ] } );
   
 })();
 </script>
-<!-- ===== Ton bouton (logo) ===== -->
-<button id="chat-btn" type="button" aria-label="Ouvrir le chat"
-  style="position:fixed;right:18px;bottom:18px;width:64px;height:64px;border-radius:999px;border:none;
-         cursor:pointer;background:#0f0f10;box-shadow:0 10px 30px rgba(0,0,0,.35);
-         display:flex;align-items:center;justify-content:center;z-index:99999;">
-  <img src="./images/2025-04-fofo.png" alt="" style="width:34px;height:34px;object-fit:contain;display:block;">
-</button>
-
-<script type="text/javascript">
-  // 1) Préparer l’API AVANT de charger Tawk (important)
-  window.Tawk_API = window.Tawk_API || {};
-  window.Tawk_LoadStart = new Date();
-
-  window.Tawk_API.onLoad = function () {
-    console.log("[TAWK] loaded ✅");
-    // Optionnel : cache la bulle Tawk d'origine
-    try { window.Tawk_API.hideWidget(); } catch (e) {}
-  };
-
-  function openChatWithRetry(tries = 20) {
-    const api = window.Tawk_API;
-
-    // Quand Tawk n’est pas encore prêt
-    if (!api || (typeof api.maximize !== "function" && typeof api.toggle !== "function")) {
-      if (tries <= 0) {
-        console.warn("[TAWK] API not ready ❌ (bloqué ? adblock ?)");
-        return;
-      }
-      return setTimeout(() => openChatWithRetry(tries - 1), 250);
-    }
-
-    // Ouvrir le chat
-    try { api.showWidget && api.showWidget(); } catch(e) {}
-    try { api.maximize && api.maximize(); console.log("[TAWK] maximize()"); return; } catch(e) {}
-    try { api.toggle && api.toggle(); console.log("[TAWK] toggle()"); } catch(e) {}
-  }
-
-  // 2) Attacher le clic quand le DOM est prêt (évite “ça fait rien”)
-  document.addEventListener("DOMContentLoaded", function () {
-    const btn = document.getElementById("chat-btn");
-    if (!btn) return console.error("[TAWK] chat-btn introuvable ❌");
-    btn.addEventListener("click", function () {
-      console.log("[TAWK] click");
-      openChatWithRetry();
-    });
-  });
-</script>
-
-<!-- ===== Script Tawk officiel (le tien, inchangé) ===== -->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
