@@ -1607,22 +1607,35 @@ wp.i18n.setLocaleData( { 'text directionltr': [ 'ltr' ] } );
   
 })();
 </script>
-
 <script>
   (function(d,t) {
     var BASE_URL="https://app.chatwoot.com";
-    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    var g=d.createElement(t), s=d.getElementsByTagName(t)[0];
     g.src=BASE_URL+"/packs/js/sdk.js";
     g.async = true;
-    s.parentNode.insertBefore(g,s);
+
     g.onload=function(){
+      console.log("[CHATWOOT] sdk loaded ✅", window.chatwootSDK);
       window.chatwootSDK.run({
-        websiteToken: 'zdhhcQUtuwvobgV3Ca8WYiWz',
+        websiteToken: "zdhhcQUtuwvobgV3Ca8WYiWz",
         baseUrl: BASE_URL
-      })
-    }
+      });
+
+      // si l’API $chatwoot existe, on tente d’ouvrir
+      setTimeout(() => {
+        console.log("[CHATWOOT] $chatwoot:", window.$chatwoot);
+        try { window.$chatwoot && window.$chatwoot.toggle("open"); } catch (e) {}
+      }, 1500);
+    };
+
+    g.onerror=function(e){
+      console.error("[CHATWOOT] sdk failed ❌", e);
+    };
+
+    s.parentNode.insertBefore(g,s);
   })(document,"script");
 </script>
+
 
 	</body>
 
