@@ -1618,7 +1618,7 @@ wp.i18n.setLocaleData( { 'text directionltr': [ 'ltr' ] } );
     display:flex; align-items:center; justify-content:center;
     z-index:999999;
   ">
-  <img src="./images/2025-04-fofo.png" alt="Chat"
+  <img src="./images/2025-04-lef.png" alt="Chat"
        style="width:38px;height:38px;border-radius:999px;object-fit:cover;display:block;">
 </button>
 
@@ -1649,19 +1649,23 @@ wp.i18n.setLocaleData( { 'text directionltr': [ 'ltr' ] } );
         baseUrl: BASE_URL
       });
 
+      var btn = document.getElementById("cw-launcher");
+      var isOpen = false;
+
       // Force le widget à être fermé au chargement
       setTimeout(function () {
         if (window.$chatwoot && typeof window.$chatwoot.toggle === "function") {
           window.$chatwoot.toggle("close");
+          isOpen = false;
         }
       }, 700);
 
-      // Ton bouton ouvre/ferme le chat
-      var btn = document.getElementById("cw-launcher");
+      // Toggle open/close au clic
       btn.addEventListener("click", function () {
-        if (window.$chatwoot && typeof window.$chatwoot.toggle === "function") {
-          window.$chatwoot.toggle("open");
-        }
+        if (!window.$chatwoot || typeof window.$chatwoot.toggle !== "function") return;
+
+        isOpen = !isOpen;
+        window.$chatwoot.toggle(isOpen ? "open" : "close");
       });
     };
   })(document,"script");
